@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navbar-container"></div>
+
+    <div class="about-container">
+        <h1>Biography</h1>
+        <p>I am a second-year Information Technology student at Ngee Ann Polytechnic, specializing in Software Engineering with a focus on Web and Mobile Application Development.
+
+            Passionate about creating scalable and user-friendly solutions, I continuously refine my skills to stay at the forefront of modern technology trends.
+            
+            Driven by a problem-solving mindset, I thrive on tackling technical challenges—whether optimizing system performance, debugging complex code, or exploring innovative software solutions.
+        </p>
+        <p>Beyond academics, I enjoy experimenting with new technologies, contributing to open-source projects, and enhancing my understanding of network security and enterprise systems.
+            
+            I am eager to apply my expertise in software development, networking, and cybersecurity to real-world projects, where I can innovate, collaborate, and grow as a developer.</p>
+        
+
+        <h1 style="margin-top: 50px;">Skills</h1>
+        <ul>
+            <li>• Full Stack Development</li>
+            <li>• Mobile Application Development</li>
+            <li>• Enterprise Networking</li>
+            <li>• System Administration</li>
+            <li>• Virtualization & IT Security</li>
+        </ul>
+
+        <h1 style="margin-top: 50px;">Certifications</h1>
+        <ul>
+            <li>• Professional Scrum Master (PSM I)</li>
+            <li>• Certified Secure Computer User (CSCU)</li>
+            <li>• Certified Security Specialist (ECSS)</li>
+        </ul>
+    </div>
+
+    <script>
+        // Load Navbar
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(html => document.getElementById("navbar-container").innerHTML = html);
+    </script>
+
+</body>
+</html>
