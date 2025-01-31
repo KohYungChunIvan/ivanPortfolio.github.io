@@ -18,29 +18,43 @@
 
     <script>
         async function fetchRepos() {
-            const username = "KohYungChunIvan"; // Change to your GitHub username
+            const username = "KohYungChunIvan"; // Your GitHub username
             const repoList = document.getElementById("repo-list");
-
+    
             try {
+                // Fetch own repositories
                 const response = await fetch(`https://api.github.com/users/${username}/repos`);
                 const repos = await response.json();
-                repoList.innerHTML = "";
-
-                repos.forEach(repo => {
-                    const li = document.createElement("li");
-                    const a = document.createElement("a");
-                    a.href = repo.html_url;
-                    a.textContent = repo.name;
-                    a.target = "_blank";
-                    li.appendChild(a);
-                    repoList.appendChild(li);
+    
+                // Fetch starred repositories (to include collaborations)
+                const starredResponse = await fetch(`https://api.github.com/users/${username}/starred`);
+                const starredRepos = await starredResponse.json();
+    
+                repoList.innerHTML = ""; // Clear the loading text
+    
+                const allRepos = [...repos, ...starredRepos]; // Merge both lists
+                const uniqueRepos = new Map(); // Prevent duplicates
+    
+                allRepos.forEach(repo => {
+                    if (!uniqueRepos.has(repo.html_url)) {
+                        uniqueRepos.set(repo.html_url, repo);
+    
+                        const li = document.createElement("li");
+                        const a = document.createElement("a");
+                        a.href = repo.html_url;
+                        a.textContent = repo.name;
+                        a.target = "_blank";
+                        li.appendChild(a);
+                        repoList.appendChild(li);
+                    }
                 });
-
+    
             } catch (error) {
                 repoList.innerHTML = "Error fetching repositories.";
                 console.error(error);
             }
         }
+    
         fetchRepos();
     </script>
 </body>
